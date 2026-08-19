@@ -154,6 +154,28 @@ export function rankSubjects(
     .sort((a, b) => b.summary.value - a.summary.value)
 }
 
+/** All subjects, scored first (descending) then unscored alphabetically. */
+export function listSubjects(
+  dataset: Dataset,
+  subjectType: SubjectType,
+  asOf?: string,
+): Array<{ id: string; name: string; summary: ScoreSummary }> {
+  const subjects =
+    subjectType === 'model'
+      ? dataset.models.map((m) => ({ id: m.id, name: m.name }))
+      : dataset.companies.map((c) => ({ id: c.id, name: c.name }))
+
+  return subjects
+    .map((s) => ({ ...s, summary: overallScore(dataset, s.id, subjectType, asOf) }))
+    .sort((a, b) => {
+      const aScored = a.summary.covered > 0
+      const bScored = b.summary.covered > 0
+      if (aScored !== bScored) return aScored ? -1 : 1
+      if (aScored && bScored) return b.summary.value - a.summary.value
+      return a.name.localeCompare(b.name)
+    })
+}
+
 /** Score history for a subject + criterion, oldest first. */
 export function scoreHistory(
   dataset: Dataset,

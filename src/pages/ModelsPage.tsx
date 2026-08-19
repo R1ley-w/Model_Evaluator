@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom'
 import { dataset } from '../data/dataset'
-import { rankSubjects } from '../data/scoring'
+import { listSubjects } from '../data/scoring'
 import { EntityCard } from '../components/EntityCard'
 import { companyById, modelById } from '../data/selectors'
 
 export function ModelsPage() {
-  const models = rankSubjects(dataset, 'model')
+  const models = listSubjects(dataset, 'model')
 
   return (
     <div className="flex flex-col gap-4">
       <h1 className="text-2xl font-bold">Models</h1>
       <p className="text-neutral-500">
-        {models.length} models with at least one score.
+        {models.length} models tracked.
       </p>
       <div className="grid gap-3 sm:grid-cols-2">
         {models.map((m) => {
