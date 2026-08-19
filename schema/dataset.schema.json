@@ -1,0 +1,265 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/R1ley-w/Model_Evaluator/main/schema/dataset.schema.json",
+  "title": "Model Evaluator Dataset",
+  "description": "Schema for the Model Evaluator dataset: AI models, companies, rubric, facts, scores, snapshots, and sources.",
+  "type": "object",
+  "required": ["meta", "rubric", "sources", "companies", "models", "scores", "snapshots"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "version", "generatedAt", "generator", "methodology"],
+      "additionalProperties": false,
+      "properties": {
+        "title": { "type": "string" },
+        "version": { "type": "string" },
+        "generatedAt": { "type": "string", "format": "date-time" },
+        "generator": { "type": "string" },
+        "methodology": { "type": "string", "format": "uri" },
+        "license": { "type": "string" }
+      }
+    },
+    "rubric": { "$ref": "#/$defs/rubric" },
+    "sources": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/source" }
+    },
+    "companies": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/company" }
+    },
+    "models": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/model" }
+    },
+    "scores": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/score" }
+    },
+    "snapshots": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/snapshot" }
+    }
+  },
+
+  "$defs": {
+    "rubric": {
+      "type": "object",
+      "required": ["version", "scale", "method", "criteria"],
+      "additionalProperties": false,
+      "properties": {
+        "version": { "type": "string" },
+        "scale": {
+          "type": "object",
+          "required": ["min", "max"],
+          "additionalProperties": false,
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        },
+        "method": {
+          "type": "object",
+          "required": ["blend"],
+          "additionalProperties": false,
+          "properties": {
+            "blend": {
+              "type": "object",
+              "description": "Default weights for blending editorial / rubric / community scores.",
+              "properties": {
+                "editorial": { "type": "number", "minimum": 0, "maximum": 1 },
+                "rubric": { "type": "number", "minimum": 0, "maximum": 1 },
+                "community": { "type": "number", "minimum": 0, "maximum": 1 }
+              }
+            }
+          }
+        },
+        "criteria": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/criterion" }
+        }
+      }
+    },
+
+    "criterion": {
+      "type": "object",
+      "required": ["id", "name", "description", "scope", "weight", "indicators"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "scope": { "enum": ["model", "company", "both"] },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "indicators": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/indicator" }
+        }
+      }
+    },
+
+    "indicator": {
+      "type": "object",
+      "required": ["id", "name", "description", "weight", "valueType"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "valueType": {
+          "enum": ["quantitative", "rating", "enum", "boolean", "text"]
+        },
+        "unit": { "type": "string" },
+        "direction": {
+          "enum": ["higher-better", "lower-better", "informational"]
+        }
+      }
+    },
+
+    "source": {
+      "type": "object",
+      "required": ["id", "title", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "type": {
+          "enum": ["report", "paper", "dataset", "model-card", "news", "website"]
+        },
+        "url": { "type": "string", "format": "uri" },
+        "publisher": { "type": "string" },
+        "publishedAt": { "type": "string", "format": "date" },
+        "accessedAt": { "type": "string", "format": "date" },
+        "license": { "type": "string" }
+      }
+    },
+
+    "fact": {
+      "type": "object",
+      "required": ["id", "metric", "value", "asOf", "sourceIds"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "metric": { "type": "string" },
+        "value": {
+          "type": ["number", "string", "boolean"]
+        },
+        "unit": { "type": "string" },
+        "status": {
+          "enum": ["disclosed", "estimated", "speculative", "not-disclosed"]
+        },
+        "asOf": { "type": "string", "format": "date" },
+        "sourceIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "confidenceLabel": {
+          "enum": ["high", "medium", "low", "speculative"]
+        },
+        "notes": { "type": "string" }
+      }
+    },
+
+    "company": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "country": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "founded": { "type": "integer" },
+        "url": { "type": "string", "format": "uri" },
+        "externalIds": { "type": "object" },
+        "facts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fact" }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+
+    "model": {
+      "type": "object",
+      "required": ["id", "name", "companyId"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "companyId": { "type": "string" },
+        "family": { "type": "string" },
+        "type": {
+          "enum": ["language", "image", "multimodal", "audio", "other"]
+        },
+        "releaseDate": { "type": "string", "format": "date" },
+        "openWeights": { "type": "boolean" },
+        "license": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "externalIds": { "type": "object" },
+        "facts": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/fact" }
+        },
+        "notes": { "type": "string" }
+      }
+    },
+
+    "score": {
+      "type": "object",
+      "required": [
+        "id",
+        "subjectId",
+        "subjectType",
+        "criterionId",
+        "type",
+        "value",
+        "asOf"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "subjectId": { "type": "string" },
+        "subjectType": { "enum": ["company", "model"] },
+        "criterionId": { "type": "string" },
+        "indicatorId": { "type": "string" },
+        "type": { "enum": ["editorial", "rubric", "community"] },
+        "value": { "type": "number", "minimum": 0, "maximum": 100 },
+        "weight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "asOf": { "type": "string", "format": "date" },
+        "sourceIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "confidence": { "type": "number", "minimum": 0, "maximum": 1 },
+        "confidenceLabel": {
+          "enum": ["high", "medium", "low", "speculative"]
+        },
+        "sampleSize": { "type": "integer", "minimum": 0 },
+        "rationale": { "type": "string" },
+        "reviewer": { "type": "string" }
+      }
+    },
+
+    "snapshot": {
+      "type": "object",
+      "required": ["id", "capturedAt"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "capturedAt": { "type": "string", "format": "date-time" },
+        "note": { "type": "string" },
+        "scoreIds": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
