@@ -10,7 +10,10 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc -b --noEmit",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "data:fetch": "tsx scripts/fetch-epoch.ts && tsx scripts/fetch-huggingface.ts && tsx scripts/fetch-aiid.ts",
+    "data:merge": "tsx scripts/merge.ts",
+    "data": "npm run data:fetch && npm run data:merge"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
@@ -31,6 +34,7 @@
     "@vitest/coverage-v8": "^4.1.11",
     "jsdom": "^30.0.1",
     "oxlint": "^1.75.0",
+    "tsx": "^4.23.12",
     "typescript": "~6.0.2",
     "vite": "^8.2.0",
     "vitest": "^4.1.11"
