@@ -1,18 +1,25 @@
 {
-  "$schema": "./dataset.schema.json",
+  "$schema": "../schema/dataset.schema.json",
   "meta": {
-    "title": "Model Evaluator — Example Dataset",
-    "version": "0.1.0",
-    "generatedAt": "2026-08-19T00:00:00Z",
-    "generator": "manual",
+    "title": "Model Evaluator Dataset",
+    "version": "0.2.0",
+    "generatedAt": "2026-08-19T17:21:04.691Z",
+    "generator": "data-pipeline",
     "methodology": "https://github.com/R1ley-w/Model_Evaluator/blob/main/docs/data-model.md",
     "license": "CC-BY-4.0"
   },
   "rubric": {
     "version": "1.0.0",
-    "scale": { "min": 0, "max": 100 },
+    "scale": {
+      "min": 0,
+      "max": 100
+    },
     "method": {
-      "blend": { "editorial": 0.5, "rubric": 0.4, "community": 0.1 }
+      "blend": {
+        "editorial": 0.5,
+        "rubric": 0.4,
+        "community": 0.1
+      }
     },
     "criteria": [
       {
@@ -21,25 +28,7 @@
         "description": "Training and inference energy use, emissions, and data-center efficiency.",
         "scope": "model",
         "weight": 0.2,
-        "indicators": [
-          {
-            "id": "training_emissions",
-            "name": "Training emissions",
-            "description": "CO2e emitted during training.",
-            "weight": 0.4,
-            "valueType": "quantitative",
-            "unit": "kgCO2e",
-            "direction": "lower-better"
-          },
-          {
-            "id": "emissions_disclosed",
-            "name": "Emissions disclosure",
-            "description": "Whether the developer disclosed emissions at all.",
-            "weight": 0.6,
-            "valueType": "boolean",
-            "direction": "higher-better"
-          }
-        ]
+        "indicators": []
       },
       {
         "id": "transparency",
@@ -98,9 +87,25 @@
       "type": "dataset",
       "url": "https://epoch.ai/data/ai-models",
       "publisher": "Epoch AI",
-      "publishedAt": "2026-08-18",
       "accessedAt": "2026-08-19",
       "license": "CC-BY-4.0"
+    },
+    {
+      "id": "hf-hub",
+      "title": "Hugging Face Hub model metadata",
+      "type": "dataset",
+      "url": "https://huggingface.co/docs/hub/en/api",
+      "publisher": "Hugging Face",
+      "accessedAt": "2026-08-19"
+    },
+    {
+      "id": "aiid",
+      "title": "AI Incident Database",
+      "type": "dataset",
+      "url": "https://incidentdatabase.ai/",
+      "publisher": "Responsible AI Collaborative",
+      "accessedAt": "2026-08-19",
+      "license": "CC-BY-NC-SA-4.0"
     },
     {
       "id": "gpt4-technical-report",
@@ -125,24 +130,372 @@
     {
       "id": "openai",
       "name": "OpenAI",
-      "aliases": ["OpenAI Inc.", "OpenAI LP"],
+      "aliases": [
+        "openai",
+        "open ai"
+      ],
       "country": "US",
       "founded": 2015,
       "url": "https://openai.com",
-      "externalIds": { "wikidata": "Q21708256" },
-      "facts": [],
-      "notes": ""
+      "facts": [
+        {
+          "id": "aiid-openai-incidents",
+          "metric": "aiIncidents",
+          "value": 173,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "aliases": [
+        "google",
+        "alphabet",
+        "deepmind",
+        "google deepmind",
+        "google-deepmind"
+      ],
+      "country": "US",
+      "founded": 1998,
+      "url": "https://deepmind.google",
+      "facts": [
+        {
+          "id": "aiid-google-incidents",
+          "metric": "aiIncidents",
+          "value": 95,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "microsoft",
+      "name": "Microsoft",
+      "aliases": [
+        "microsoft"
+      ],
+      "country": "US",
+      "founded": 1975,
+      "url": "https://microsoft.com",
+      "facts": [
+        {
+          "id": "aiid-microsoft-incidents",
+          "metric": "aiIncidents",
+          "value": 39,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
     },
     {
       "id": "meta",
       "name": "Meta",
-      "aliases": ["Meta AI", "Meta Platforms"],
+      "aliases": [
+        "meta",
+        "facebook",
+        "meta ai",
+        "metaai"
+      ],
       "country": "US",
       "founded": 2004,
       "url": "https://ai.meta.com",
-      "externalIds": { "wikidata": "Q380" },
-      "facts": [],
-      "notes": ""
+      "facts": [
+        {
+          "id": "aiid-meta-incidents",
+          "metric": "aiIncidents",
+          "value": 96,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "aliases": [
+        "anthropic"
+      ],
+      "country": "US",
+      "founded": 2021,
+      "url": "https://anthropic.com",
+      "facts": [
+        {
+          "id": "aiid-anthropic-incidents",
+          "metric": "aiIncidents",
+          "value": 30,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon",
+      "aliases": [
+        "amazon",
+        "aws",
+        "amazon web services"
+      ],
+      "country": "US",
+      "founded": 1994,
+      "url": "https://aws.amazon.com",
+      "facts": [
+        {
+          "id": "aiid-amazon-incidents",
+          "metric": "aiIncidents",
+          "value": 29,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "aliases": [
+        "xai",
+        "x.ai",
+        "x corp",
+        "grok"
+      ],
+      "country": "US",
+      "founded": 2023,
+      "url": "https://x.ai",
+      "facts": [
+        {
+          "id": "aiid-xai-incidents",
+          "metric": "aiIncidents",
+          "value": 31,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "aliases": [
+        "mistral",
+        "mistral ai",
+        "mistralai"
+      ],
+      "country": "FR",
+      "founded": 2023,
+      "url": "https://mistral.ai",
+      "facts": [
+        {
+          "id": "aiid-mistral-incidents",
+          "metric": "aiIncidents",
+          "value": 4,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "stability",
+      "name": "Stability AI",
+      "aliases": [
+        "stability",
+        "stability ai",
+        "stabilityai"
+      ],
+      "country": "GB",
+      "founded": 2019,
+      "url": "https://stability.ai",
+      "facts": []
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "aliases": [
+        "cohere",
+        "cohereforai"
+      ],
+      "country": "CA",
+      "founded": 2019,
+      "url": "https://cohere.com",
+      "facts": [
+        {
+          "id": "aiid-cohere-incidents",
+          "metric": "aiIncidents",
+          "value": 1,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "aliases": [
+        "deepseek",
+        "deepseek ai"
+      ],
+      "country": "CN",
+      "founded": 2023,
+      "url": "https://deepseek.com",
+      "facts": [
+        {
+          "id": "aiid-deepseek-incidents",
+          "metric": "aiIncidents",
+          "value": 1,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "alibaba",
+      "name": "Alibaba",
+      "aliases": [
+        "alibaba",
+        "qwen",
+        "damo academy",
+        "alibaba cloud"
+      ],
+      "country": "CN",
+      "founded": 1999,
+      "url": "https://qwen.ai",
+      "facts": [
+        {
+          "id": "aiid-alibaba-incidents",
+          "metric": "aiIncidents",
+          "value": 4,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "aliases": [
+        "apple"
+      ],
+      "country": "US",
+      "founded": 1976,
+      "url": "https://apple.com",
+      "facts": [
+        {
+          "id": "aiid-apple-incidents",
+          "metric": "aiIncidents",
+          "value": 16,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "ibm",
+      "name": "IBM",
+      "aliases": [
+        "ibm"
+      ],
+      "country": "US",
+      "founded": 1911,
+      "url": "https://ibm.com",
+      "facts": [
+        {
+          "id": "aiid-ibm-incidents",
+          "metric": "aiIncidents",
+          "value": 2,
+          "unit": "incidents",
+          "status": "disclosed",
+          "asOf": "2026-08-17",
+          "sourceIds": [
+            "aiid"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Incidents where the company is the alleged developer"
+        }
+      ]
+    },
+    {
+      "id": "huggingface",
+      "name": "Hugging Face",
+      "aliases": [
+        "hugging face",
+        "huggingface"
+      ],
+      "country": "US",
+      "founded": 2016,
+      "url": "https://huggingface.co",
+      "facts": []
     }
   ],
   "models": [
@@ -152,33 +505,216 @@
       "companyId": "openai",
       "family": "GPT",
       "type": "multimodal",
-      "releaseDate": "2023-03-14",
+      "releaseDate": "2023-06-13",
       "openWeights": false,
-      "license": "proprietary",
       "url": "https://openai.com/research/gpt-4",
-      "externalIds": { "epoch": "gpt-4", "hf": "openai/gpt-4" },
+      "externalIds": {
+        "epoch": "GPT-4 (Jun 2023)"
+      },
       "facts": [
         {
-          "id": "gpt-4-training-compute",
-          "metric": "trainingComputeFlop",
-          "value": 2.1e25,
-          "unit": "FLOP",
+          "id": "epoch-gpt-4-parameters",
+          "metric": "parameters",
+          "value": 1800000000000,
+          "unit": "count",
           "status": "estimated",
-          "asOf": "2026-08-18",
-          "sourceIds": ["epoch-models"],
-          "confidenceLabel": "low"
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
         },
         {
-          "id": "gpt-4-training-emissions",
-          "metric": "trainingEmissionsKgCO2e",
-          "value": "not disclosed",
-          "status": "not-disclosed",
+          "id": "epoch-gpt-4-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 2.1e+25,
+          "unit": "FLOP",
+          "status": "estimated",
           "asOf": "2026-08-19",
-          "sourceIds": ["gpt4-technical-report"],
-          "confidenceLabel": "high"
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-gpt-4-trainingDatasetSize",
+          "metric": "trainingDatasetSize",
+          "value": 5416666666666.667,
+          "unit": "tokens",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-gpt-4-trainingPowerDrawW",
+          "metric": "trainingPowerDrawW",
+          "value": 19904434.788947295,
+          "unit": "W",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-gpt-4-trainingTimeHours",
+          "metric": "trainingTimeHours",
+          "value": 2280,
+          "unit": "hours",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
         }
-      ],
-      "notes": ""
+      ]
+    },
+    {
+      "id": "gpt-4o",
+      "name": "GPT-4o",
+      "companyId": "openai",
+      "family": "GPT",
+      "type": "multimodal",
+      "releaseDate": "2024-05-13",
+      "openWeights": false,
+      "url": "https://openai.com/index/hello-gpt-4o/",
+      "externalIds": {
+        "epoch": "GPT-4o"
+      },
+      "facts": []
+    },
+    {
+      "id": "o1",
+      "name": "o1",
+      "companyId": "openai",
+      "family": "o-series",
+      "type": "language",
+      "releaseDate": "2024-12-05",
+      "openWeights": false,
+      "url": "https://openai.com/o1/",
+      "externalIds": {
+        "epoch": "o1"
+      },
+      "facts": []
+    },
+    {
+      "id": "dall-e-3",
+      "name": "DALL·E 3",
+      "companyId": "openai",
+      "family": "DALL·E",
+      "type": "image",
+      "releaseDate": "2023-10-19",
+      "openWeights": false,
+      "url": "https://openai.com/dall-e-3",
+      "externalIds": {
+        "epoch": "DALL·E 3"
+      },
+      "facts": []
+    },
+    {
+      "id": "gemini-1-5-pro",
+      "name": "Gemini 1.5 Pro",
+      "companyId": "google",
+      "family": "Gemini",
+      "type": "multimodal",
+      "releaseDate": "2024-02-15",
+      "openWeights": false,
+      "url": "https://deepmind.google/technologies/gemini/",
+      "externalIds": {
+        "epoch": "Gemini 1.5 Pro"
+      },
+      "facts": []
+    },
+    {
+      "id": "gemini-2-0-flash",
+      "name": "Gemini 2.0 Flash",
+      "companyId": "google",
+      "family": "Gemini",
+      "type": "multimodal",
+      "releaseDate": "2024-12-11",
+      "openWeights": false,
+      "url": "https://deepmind.google/technologies/gemini/",
+      "externalIds": {
+        "epoch": "Gemini 2.0 Flash"
+      },
+      "facts": []
+    },
+    {
+      "id": "palm-2",
+      "name": "PaLM 2",
+      "companyId": "google",
+      "family": "PaLM",
+      "type": "language",
+      "releaseDate": "2023-05-10",
+      "openWeights": false,
+      "url": "https://ai.google/discover/palm2/",
+      "externalIds": {
+        "epoch": "PaLM 2"
+      },
+      "facts": [
+        {
+          "id": "epoch-palm-2-parameters",
+          "metric": "parameters",
+          "value": 340000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-palm-2-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 7.34e+24,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-palm-2-trainingDatasetSize",
+          "metric": "trainingDatasetSize",
+          "value": 3600000000000,
+          "unit": "tokens",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-palm-2-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 5014266.983518871,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        }
+      ]
     },
     {
       "id": "llama-3-70b",
@@ -188,22 +724,524 @@
       "type": "language",
       "releaseDate": "2024-04-18",
       "openWeights": true,
-      "license": "Llama 3 Community License",
       "url": "https://ai.meta.com/blog/meta-llama-3/",
-      "externalIds": { "epoch": "llama-3-70b", "hf": "meta-llama/Meta-Llama-3-70B" },
+      "externalIds": {
+        "epoch": "Llama 3-70B",
+        "hf": "meta-llama/Meta-Llama-3-70B"
+      },
       "facts": [
         {
-          "id": "llama3-70b-parameters",
+          "id": "epoch-llama-3-70b-parameters",
           "metric": "parameters",
-          "value": 7e10,
+          "value": 70000000000,
           "unit": "count",
-          "status": "disclosed",
-          "asOf": "2024-04-18",
-          "sourceIds": ["llama3-model-card"],
-          "confidenceLabel": "high"
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-70b-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 7.861e+24,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-70b-trainingDatasetSize",
+          "metric": "trainingDatasetSize",
+          "value": 15000000000000,
+          "unit": "tokens",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
         }
       ],
-      "notes": ""
+      "license": "llama3"
+    },
+    {
+      "id": "llama-3-1-405b",
+      "name": "Llama 3.1 (405B)",
+      "companyId": "meta",
+      "family": "Llama",
+      "type": "language",
+      "releaseDate": "2024-07-23",
+      "openWeights": true,
+      "url": "https://ai.meta.com/blog/meta-llama-3-1/",
+      "externalIds": {
+        "epoch": "Llama 3.1-405B",
+        "hf": "meta-llama/Meta-Llama-3.1-405B"
+      },
+      "facts": [
+        {
+          "id": "epoch-llama-3-1-405b-parameters",
+          "metric": "parameters",
+          "value": 405000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-1-405b-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 3.8e+25,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-1-405b-trainingDatasetSize",
+          "metric": "trainingDatasetSize",
+          "value": 15600000000000,
+          "unit": "tokens",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-1-405b-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 52885433.95402246,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-1-405b-trainingPowerDrawW",
+          "metric": "trainingPowerDrawW",
+          "value": 22622532.159299146,
+          "unit": "W",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-llama-3-1-405b-trainingTimeHours",
+          "metric": "trainingTimeHours",
+          "value": 2142,
+          "unit": "hours",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ],
+      "license": "llama3.1"
+    },
+    {
+      "id": "claude-3-opus",
+      "name": "Claude 3 Opus",
+      "companyId": "anthropic",
+      "family": "Claude",
+      "type": "language",
+      "releaseDate": "2024-03-04",
+      "openWeights": false,
+      "url": "https://anthropic.com/claude",
+      "externalIds": {
+        "epoch": "Claude 3 Opus"
+      },
+      "facts": []
+    },
+    {
+      "id": "claude-3-5-sonnet",
+      "name": "Claude 3.5 Sonnet",
+      "companyId": "anthropic",
+      "family": "Claude",
+      "type": "language",
+      "releaseDate": "2024-06-20",
+      "openWeights": false,
+      "url": "https://anthropic.com/claude",
+      "externalIds": {
+        "epoch": "Claude 3.5 Sonnet"
+      },
+      "facts": [
+        {
+          "id": "epoch-claude-3-5-sonnet-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 2.700000000000001e+25,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "low",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-claude-3-5-sonnet-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 25870993.12024943,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "low",
+          "notes": "Epoch AI estimate"
+        }
+      ]
+    },
+    {
+      "id": "mistral-7b",
+      "name": "Mistral 7B",
+      "companyId": "mistral",
+      "family": "Mistral",
+      "type": "language",
+      "releaseDate": "2023-10-10",
+      "openWeights": true,
+      "url": "https://mistral.ai/news/announcing-mistral-7b/",
+      "externalIds": {
+        "epoch": "Mistral 7B",
+        "hf": "mistralai/Mistral-7B-v0.1"
+      },
+      "facts": [
+        {
+          "id": "epoch-mistral-7b-parameters",
+          "metric": "parameters",
+          "value": 7000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ],
+      "license": "apache-2.0"
+    },
+    {
+      "id": "mistral-large",
+      "name": "Mistral Large",
+      "companyId": "mistral",
+      "family": "Mistral",
+      "type": "language",
+      "releaseDate": "2024-02-26",
+      "openWeights": false,
+      "url": "https://mistral.ai/news/mistral-large/",
+      "externalIds": {
+        "epoch": "Mistral Large"
+      },
+      "facts": [
+        {
+          "id": "epoch-mistral-large-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 14110111.93,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "low",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-mistral-large-trainingTimeHours",
+          "metric": "trainingTimeHours",
+          "value": 2500,
+          "unit": "hours",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "low",
+          "notes": "Epoch AI estimate"
+        }
+      ]
+    },
+    {
+      "id": "grok-3",
+      "name": "Grok 3",
+      "companyId": "xai",
+      "family": "Grok",
+      "type": "language",
+      "releaseDate": "2025-02-17",
+      "openWeights": false,
+      "url": "https://x.ai/blog/grok-3",
+      "externalIds": {
+        "epoch": "Grok 3"
+      },
+      "facts": [
+        {
+          "id": "epoch-grok-3-parameters",
+          "metric": "parameters",
+          "value": 3000000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-grok-3-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 3.5e+26,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-grok-3-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 217835545.5267339,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-grok-3-trainingPowerDrawW",
+          "metric": "trainingPowerDrawW",
+          "value": 109948656.20196915,
+          "unit": "W",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-grok-3-trainingTimeHours",
+          "metric": "trainingTimeHours",
+          "value": 2160,
+          "unit": "hours",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "medium",
+          "notes": "Epoch AI estimate"
+        }
+      ]
+    },
+    {
+      "id": "deepseek-r1",
+      "name": "DeepSeek-R1",
+      "companyId": "deepseek",
+      "family": "DeepSeek",
+      "type": "language",
+      "releaseDate": "2025-01-20",
+      "openWeights": true,
+      "url": "https://github.com/deepseek-ai/DeepSeek-R1",
+      "externalIds": {
+        "epoch": "DeepSeek-R1",
+        "hf": "deepseek-ai/DeepSeek-R1"
+      },
+      "facts": [
+        {
+          "id": "epoch-deepseek-r1-parameters",
+          "metric": "parameters",
+          "value": 671000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-deepseek-r1-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 3.5e+24,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-deepseek-r1-trainingDatasetSize",
+          "metric": "trainingDatasetSize",
+          "value": 14800000000000,
+          "unit": "tokens",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-deepseek-r1-trainingCostUsd",
+          "metric": "trainingCostUsd",
+          "value": 6770000,
+          "unit": "USD",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ],
+      "license": "mit"
+    },
+    {
+      "id": "stable-diffusion-3",
+      "name": "Stable Diffusion 3",
+      "companyId": "stability",
+      "family": "Stable Diffusion",
+      "type": "image",
+      "releaseDate": "2024-02-22",
+      "openWeights": false,
+      "url": "https://stability.ai/news/stable-diffusion-3",
+      "externalIds": {
+        "epoch": "Stable Diffusion 3",
+        "hf": "stabilityai/stable-diffusion-3-medium"
+      },
+      "facts": [
+        {
+          "id": "epoch-stable-diffusion-3-parameters",
+          "metric": "parameters",
+          "value": 8000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        },
+        {
+          "id": "epoch-stable-diffusion-3-trainingComputeFlop",
+          "metric": "trainingComputeFlop",
+          "value": 5.0000000000000004e+22,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ],
+      "license": "other"
+    },
+    {
+      "id": "command-r-plus",
+      "name": "Command R+",
+      "companyId": "cohere",
+      "family": "Command",
+      "type": "language",
+      "releaseDate": "2024-04-04",
+      "openWeights": true,
+      "url": "https://cohere.com/command",
+      "externalIds": {
+        "epoch": "Command R+",
+        "hf": "CohereForAI/c4ai-command-r-plus"
+      },
+      "facts": [
+        {
+          "id": "epoch-command-r-plus-parameters",
+          "metric": "parameters",
+          "value": 104000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ],
+      "license": "cc-by-nc-4.0"
+    },
+    {
+      "id": "qwen-3-8-max",
+      "name": "Qwen 3.8 Max",
+      "companyId": "alibaba",
+      "family": "Qwen",
+      "type": "language",
+      "releaseDate": "2025-08-06",
+      "openWeights": false,
+      "url": "https://qwen.ai",
+      "externalIds": {
+        "epoch": "Qwen 3.8 Max"
+      },
+      "facts": [
+        {
+          "id": "epoch-qwen-3-8-max-parameters",
+          "metric": "parameters",
+          "value": 2400000000000,
+          "unit": "count",
+          "status": "estimated",
+          "asOf": "2026-08-19",
+          "sourceIds": [
+            "epoch-models"
+          ],
+          "confidenceLabel": "high",
+          "notes": "Epoch AI estimate"
+        }
+      ]
     }
   ],
   "scores": [
@@ -215,7 +1253,9 @@
       "type": "editorial",
       "value": 55,
       "asOf": "2024-06-01",
-      "sourceIds": ["gpt4-technical-report"],
+      "sourceIds": [
+        "gpt4-technical-report"
+      ],
       "confidenceLabel": "medium",
       "rationale": "Partial disclosure of compute and evals; no emissions data.",
       "reviewer": "curator"
@@ -240,7 +1280,9 @@
       "type": "rubric",
       "value": 80,
       "asOf": "2024-06-01",
-      "sourceIds": ["llama3-model-card"],
+      "sourceIds": [
+        "llama3-model-card"
+      ],
       "confidenceLabel": "high",
       "rationale": "Open weights under a permissive community license.",
       "reviewer": "rubric"
