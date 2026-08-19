@@ -5,8 +5,29 @@ An interactive web app that assesses and tracks the **ethical ratings** and
 
 ## Status
 
-Early design phase. Currently documenting the data model, scoring rubric, and
-dataset schema before writing any application code.
+Design + initial app scaffold complete. The data model, scoring rubric, and
+dataset schema are documented, and a working React app renders the (currently
+small, illustrative) dataset. Fetch scripts for live data are the next step.
+
+## Tech stack
+
+- **React 19 + TypeScript** on **Vite 8**
+- **Tailwind CSS v4** for styling
+- **Recharts** for score visualizations (radar, trend lines)
+- **React Router** (hash-based, for zero-config static hosting)
+- **Vitest + React Testing Library** for tests
+- **oxlint** for linting
+
+## Getting started
+
+```bash
+npm install
+npm run dev        # start the dev server
+npm run build      # typecheck + production build
+npm run lint       # oxlint
+npm run test       # vitest (run once)
+npm run typecheck  # tsc --noEmit
+```
 
 ## Repository layout
 
@@ -16,6 +37,11 @@ docs/                      Design & methodology documentation
 schema/                    Machine-readable schema + example data
   dataset.schema.json      JSON Schema (draft 2020-12) for the dataset
   example-dataset.json     Small illustrative dataset
+src/                       React application source
+  data/                    Types, dataset, scoring logic, selectors
+  components/              UI components (charts, cards, layout)
+  pages/                   Route pages (overview, companies, models)
+  lib/                     Formatting helpers
 ```
 
 ## Data model at a glance
