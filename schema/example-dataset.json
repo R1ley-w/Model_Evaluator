@@ -1,0 +1,261 @@
+{
+  "$schema": "./dataset.schema.json",
+  "meta": {
+    "title": "Model Evaluator — Example Dataset",
+    "version": "0.1.0",
+    "generatedAt": "2026-08-19T00:00:00Z",
+    "generator": "manual",
+    "methodology": "https://github.com/R1ley-w/Model_Evaluator/blob/main/docs/data-model.md",
+    "license": "CC-BY-4.0"
+  },
+  "rubric": {
+    "version": "1.0.0",
+    "scale": { "min": 0, "max": 100 },
+    "method": {
+      "blend": { "editorial": 0.5, "rubric": 0.4, "community": 0.1 }
+    },
+    "criteria": [
+      {
+        "id": "carbon",
+        "name": "Carbon & energy footprint",
+        "description": "Training and inference energy use, emissions, and data-center efficiency.",
+        "scope": "model",
+        "weight": 0.2,
+        "indicators": [
+          {
+            "id": "training_emissions",
+            "name": "Training emissions",
+            "description": "CO2e emitted during training.",
+            "weight": 0.4,
+            "valueType": "quantitative",
+            "unit": "kgCO2e",
+            "direction": "lower-better"
+          },
+          {
+            "id": "emissions_disclosed",
+            "name": "Emissions disclosure",
+            "description": "Whether the developer disclosed emissions at all.",
+            "weight": 0.6,
+            "valueType": "boolean",
+            "direction": "higher-better"
+          }
+        ]
+      },
+      {
+        "id": "transparency",
+        "name": "Transparency",
+        "description": "Disclosure of data, compute, evals, and model cards.",
+        "scope": "both",
+        "weight": 0.15,
+        "indicators": []
+      },
+      {
+        "id": "openness",
+        "name": "Openness & licensing",
+        "description": "Open weights, source availability, license permissiveness.",
+        "scope": "model",
+        "weight": 0.1,
+        "indicators": []
+      },
+      {
+        "id": "privacy",
+        "name": "Privacy & data practices",
+        "description": "Training-data sourcing, consent, user data handling.",
+        "scope": "company",
+        "weight": 0.15,
+        "indicators": []
+      },
+      {
+        "id": "labor",
+        "name": "Labor & supply chain",
+        "description": "Data-labeler conditions and moderation-worker welfare.",
+        "scope": "company",
+        "weight": 0.15,
+        "indicators": []
+      },
+      {
+        "id": "safety",
+        "name": "Safety & harms",
+        "description": "Red-teaming, safety evals, known incidents, misuse.",
+        "scope": "model",
+        "weight": 0.15,
+        "indicators": []
+      },
+      {
+        "id": "governance",
+        "name": "Governance & accountability",
+        "description": "Corporate policy, audits, board oversight, legal/regulatory.",
+        "scope": "company",
+        "weight": 0.1,
+        "indicators": []
+      }
+    ]
+  },
+  "sources": [
+    {
+      "id": "epoch-models",
+      "title": "Data on AI Models",
+      "type": "dataset",
+      "url": "https://epoch.ai/data/ai-models",
+      "publisher": "Epoch AI",
+      "publishedAt": "2026-08-18",
+      "accessedAt": "2026-08-19",
+      "license": "CC-BY-4.0"
+    },
+    {
+      "id": "gpt4-technical-report",
+      "title": "GPT-4 Technical Report",
+      "type": "paper",
+      "url": "https://arxiv.org/abs/2303.08774",
+      "publisher": "OpenAI",
+      "publishedAt": "2023-03-15",
+      "accessedAt": "2026-08-19"
+    },
+    {
+      "id": "llama3-model-card",
+      "title": "Llama 3 Model Card",
+      "type": "model-card",
+      "url": "https://github.com/meta-llama/llama3",
+      "publisher": "Meta AI",
+      "publishedAt": "2024-04-18",
+      "accessedAt": "2026-08-19"
+    }
+  ],
+  "companies": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "aliases": ["OpenAI Inc.", "OpenAI LP"],
+      "country": "US",
+      "founded": 2015,
+      "url": "https://openai.com",
+      "externalIds": { "wikidata": "Q21708256" },
+      "facts": [],
+      "notes": ""
+    },
+    {
+      "id": "meta",
+      "name": "Meta",
+      "aliases": ["Meta AI", "Meta Platforms"],
+      "country": "US",
+      "founded": 2004,
+      "url": "https://ai.meta.com",
+      "externalIds": { "wikidata": "Q380" },
+      "facts": [],
+      "notes": ""
+    }
+  ],
+  "models": [
+    {
+      "id": "gpt-4",
+      "name": "GPT-4",
+      "companyId": "openai",
+      "family": "GPT",
+      "type": "multimodal",
+      "releaseDate": "2023-03-14",
+      "openWeights": false,
+      "license": "proprietary",
+      "url": "https://openai.com/research/gpt-4",
+      "externalIds": { "epoch": "gpt-4", "hf": "openai/gpt-4" },
+      "facts": [
+        {
+          "id": "gpt-4-training-compute",
+          "metric": "trainingComputeFlop",
+          "value": 2.1e25,
+          "unit": "FLOP",
+          "status": "estimated",
+          "asOf": "2026-08-18",
+          "sourceIds": ["epoch-models"],
+          "confidenceLabel": "low"
+        },
+        {
+          "id": "gpt-4-training-emissions",
+          "metric": "trainingEmissionsKgCO2e",
+          "value": "not disclosed",
+          "status": "not-disclosed",
+          "asOf": "2026-08-19",
+          "sourceIds": ["gpt4-technical-report"],
+          "confidenceLabel": "high"
+        }
+      ],
+      "notes": ""
+    },
+    {
+      "id": "llama-3-70b",
+      "name": "Llama 3 (70B)",
+      "companyId": "meta",
+      "family": "Llama",
+      "type": "language",
+      "releaseDate": "2024-04-18",
+      "openWeights": true,
+      "license": "Llama 3 Community License",
+      "url": "https://ai.meta.com/blog/meta-llama-3/",
+      "externalIds": { "epoch": "llama-3-70b", "hf": "meta-llama/Meta-Llama-3-70B" },
+      "facts": [
+        {
+          "id": "llama3-70b-parameters",
+          "metric": "parameters",
+          "value": 7e10,
+          "unit": "count",
+          "status": "disclosed",
+          "asOf": "2024-04-18",
+          "sourceIds": ["llama3-model-card"],
+          "confidenceLabel": "high"
+        }
+      ],
+      "notes": ""
+    }
+  ],
+  "scores": [
+    {
+      "id": "gpt-4-transparency-editorial-2024",
+      "subjectId": "gpt-4",
+      "subjectType": "model",
+      "criterionId": "transparency",
+      "type": "editorial",
+      "value": 55,
+      "asOf": "2024-06-01",
+      "sourceIds": ["gpt4-technical-report"],
+      "confidenceLabel": "medium",
+      "rationale": "Partial disclosure of compute and evals; no emissions data.",
+      "reviewer": "curator"
+    },
+    {
+      "id": "openai-governance-editorial-2024",
+      "subjectId": "openai",
+      "subjectType": "company",
+      "criterionId": "governance",
+      "type": "editorial",
+      "value": 60,
+      "asOf": "2024-06-01",
+      "confidenceLabel": "medium",
+      "rationale": "Some independent audits; governance disputes noted.",
+      "reviewer": "curator"
+    },
+    {
+      "id": "llama-3-70b-openness-rubric-2024",
+      "subjectId": "llama-3-70b",
+      "subjectType": "model",
+      "criterionId": "openness",
+      "type": "rubric",
+      "value": 80,
+      "asOf": "2024-06-01",
+      "sourceIds": ["llama3-model-card"],
+      "confidenceLabel": "high",
+      "rationale": "Open weights under a permissive community license.",
+      "reviewer": "rubric"
+    }
+  ],
+  "snapshots": [
+    {
+      "id": "2024-Q2",
+      "capturedAt": "2024-06-30T00:00:00Z",
+      "note": "First snapshot.",
+      "scoreIds": [
+        "gpt-4-transparency-editorial-2024",
+        "openai-governance-editorial-2024",
+        "llama-3-70b-openness-rubric-2024"
+      ]
+    }
+  ]
+}
